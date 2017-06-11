@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        html,
+        body {
+            font-family: Arial, sans-serif;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <script>
+        function initMap() {
+            var contentString="Do you ever feel like an InfoWindow, floating through the wind"+'ready to start again?';
+            // location data
+            var uluru = {
+                lat: 40.7413549,
+                lng: -73.99802439999996
+            };
+            // map object
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 13,
+                center: uluru
+            });
+            //marker object
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map,
+                title: 'First Marker!'
+            });
+            // Info Window
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+            // Event handler for infowindow
+            marker.addListener('click',function(){
+                infowindow.open(map, marker);
+            });
+
+        }
+    </script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=API_KEY&callback=initMap"></script>
+</body>
+
+</html>
